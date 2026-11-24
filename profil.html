@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<div class="form-sempit">
+  <h2>Profil Saya</h2>
+  <div class="card tengah">
+    <div class="avatar">{{ username[0]|upper }}</div>
+    <h3 style="margin: 0 0 12px;">{{ username }}</h3>
+    <p>Tanggal lahir: <b>{{ lahir }}</b></p>
+    <p>Umur: <b>{{ umur }} tahun</b></p>
+    <p>Bergabung sejak: <b>{{ gabung }}</b></p>
+    <a class="tombol" href="{{ url_for('keluar') }}">Keluar</a>
+  </div>
+</div>
+{% endblock %}

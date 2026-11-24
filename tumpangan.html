@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<h2>Berbagi Tumpangan</h2>
+<form method="post">
+  <label>Nama:<br><input name="nama"></label><br><br>
+  <label>Jenis:<br>
+    <select name="jenis">
+      <option>Menawarkan</option>
+      <option>Mencari</option>
+    </select>
+  </label><br><br>
+  <label>Rute:<br><input name="rute" placeholder="Kampus ke Nagoya"></label><br><br>
+  <label>Waktu:<br><input name="waktu" placeholder="Jumat 16.00"></label><br><br>
+  <button type="submit">Catat</button>
+</form>
+
+<h2>Daftar Tumpangan</h2>
+{% for r in rides %}
+  <div class="card"><b>{{ r.jenis }}</b> - {{ r.nama }}: {{ r.rute }} ({{ r.waktu }})</div>
+{% else %}
+  <p>Belum ada data tumpangan.</p>
+{% endfor %}
+{% endblock %}

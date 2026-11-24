@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<h2>Kalender Kegiatan</h2>
+
+{% for e in events %}
+  <div class="card">
+    <b>{{ e.nama }}</b><br>
+    {{ e.tanggal }} - sisa kuota: {{ e.kuota }}
+    <form method="post">
+      <input type="hidden" name="indeks" value="{{ loop.index0 }}">
+      <input name="nama" placeholder="Nama kamu">
+      <button type="submit">{{ 'Daftar' if e.kuota > 0 else 'Kuota penuh' }}</button>
+    </form>
+  </div>
+{% endfor %}
+{% endblock %}

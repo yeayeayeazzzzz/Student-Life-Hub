@@ -1,0 +1,22 @@
+{
+  "admin": {
+    "password": "scrypt:32768:8:1$dsfCHF1wtwZvZrby$987b26bd7031a0fcab4c8325383ac28b99ef1f8c132c2357d7a65f29cacbaa8ce36bd9bc4820fdfac05bc6f7567f834fd367ad73c77dc96beaa56f8652453983",
+    "lahir": "2008-04-14",
+    "gabung": "2026-11-22"
+  },
+  "ashton": {
+    "password": "scrypt:32768:8:1$aVCjUSnR35EXasTI$0985375bfd701a76b8de4abf11ef2c484f85c4d6a6dfb663d274d4a751ebf8b6d2e35b8b98b53bd14089c6f98c85a040a8bd2b89cf8996bf76ae6f16a4927a1e",
+    "lahir": "2008-10-16",
+    "gabung": "2026-11-24"
+  },
+  "ashtonnn": {
+    "password": "scrypt:32768:8:1$Lyrr9gElg5d1qWYl$f1c732a52e48bfd68f2964f0457f45bf6b36c1046ded01b1d06c3ebe728add67ba360999b509c80d846ee2f2daf3b2adac4a5207ed9b535a2697538a215235f5",
+    "lahir": "2008-09-24",
+    "gabung": "2026-11-24"
+  },
+  "ahtonnnnnn": {
+    "password": "scrypt:32768:8:1$fnqOhBaG0xN6ryHi$087ad2e31122e7fc2ace7b1b65ddd9dab6a2dfbf09edcf5b7a551d4a53f0cc3e4dca5b0176ce0e5acf74dca2d706a6b03ccdf0e48cca6f4cf743b3b9e7d9f6a6",
+    "lahir": "2007-12-24",
+    "gabung": "2026-11-24"
+  }
+}

@@ -1,0 +1,15 @@
+{% extends "auth_base.html" %}
+
+{% block isi %}
+<div class="centang">✔</div>
+<h2 style="margin: 0 0 6px;">{{ judul }}</h2>
+<p class="sub">{{ keterangan }}</p>
+<a class="tombol" href="{{ tujuan }}">{{ tombol }}</a>
+<p class="bawah">Kamu akan dipindahkan otomatis...</p>
+
+<script>
+  setTimeout(function () {
+    window.location.href = "{{ tujuan }}";
+  }, 2500);
+</script>
+{% endblock %}

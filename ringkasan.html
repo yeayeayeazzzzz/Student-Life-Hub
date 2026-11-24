@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<h2>Ringkasan Aktivitas</h2>
+<div class="card">Reservasi ruang: <b>{{ bookings|length }}</b></div>
+<div class="card">Pendaftaran kegiatan: <b>{{ regs|length }}</b></div>
+<div class="card">Kelompok belajar: <b>{{ groups|length }}</b></div>
+<div class="card">Data tumpangan: <b>{{ rides|length }}</b></div>
+
+<h2>Daftar Reservasi</h2>
+<ul>
+  {% for b in bookings %}
+    <li>{{ b.kode }}: {{ b.nama }}, {{ b.ruang }}, {{ b.waktu }} ({{ b.tujuan }})</li>
+  {% else %}
+    <li>Belum ada data.</li>
+  {% endfor %}
+</ul>
+
+<h2>Daftar Pendaftaran Kegiatan</h2>
+<ul>
+  {% for r in regs %}
+    <li>{{ r.kode }}: {{ r.nama }} - {{ r.kegiatan }}</li>
+  {% else %}
+    <li>Belum ada data.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

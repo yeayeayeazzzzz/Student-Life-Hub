@@ -1,0 +1,22 @@
+{% extends "auth_base.html" %}
+
+{% block judul %}Masuk - UIB Student Life Hub{% endblock %}
+
+{% block isi %}
+<p class="sub">Masuk untuk melanjutkan</p>
+
+<form method="post">
+  <div class="field">
+    <input name="username" placeholder="Username" aria-label="Username" required autofocus>
+  </div>
+  <div class="field">
+    <input type="password" name="password" placeholder="Password" aria-label="Password" required>
+  </div>
+  <div class="opsi">
+    <label><input type="checkbox" name="ingat"> Ingat saya</label>
+  </div>
+  <button class="btn-gradasi" type="submit">MASUK</button>
+</form>
+
+<p class="bawah">Belum punya akun? <a href="{{ url_for('daftar') }}">Daftar</a></p>
+{% endblock %}

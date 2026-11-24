@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<h2>Peminjaman Loker</h2>
+
+<div class="card">
+  Tersedia: <b>{{ total - terpakai }}</b> dari {{ total }} loker<br>
+  <div class="legenda" style="margin-top: 8px;">
+    <span class="ok">Tersedia</span>
+    <span class="selected">Dipilih</span>
+    <span class="no">Terpakai</span>
+  </div>
+</div>
+
+<h2>Pilih loker</h2>
+<form method="post">
+  <div class="card">
+    {% for huruf in baris %}
+      <div class="baris-loker">
+        <span class="huruf">{{ huruf }}</span>
+        {% for kode, peminjam in lokers.items() if kode[0] == huruf %}
+          <input type="radio" name="loker" value="{{ kode }}" id="l-{{ kode }}" {{ 'disabled' if peminjam }}>
+          <label for="l-{{ kode }}" class="loker" title="{{ 'Dipinjam: ' + peminjam if peminjam else 'Tersedia' }}">{{ kode }}</label>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <label>Nama peminjam:<br><input name="nama" placeholder="Nama kamu"></label><br>
+  <button type="submit">Pinjam kunci</button>
+</form>
+
+<h2>Riwayat Peminjaman</h2>
+<ul>
+  {% for r in riwayat %}
+    <li>{{ r.kode }}: {{ r.nama }} meminjam loker <b>{{ r.loker }}</b> ({{ r.waktu }})</li>
+  {% else %}
+    <li>Belum ada peminjaman.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

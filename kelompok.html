@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<h2>Kelompok Belajar</h2>
+
+{% for g in groups %}
+  <div class="card">
+    <b>{{ g.nama }}</b> (topik: {{ g.topik }})<br>
+    Anggota ({{ g.anggota|length }}): {{ g.anggota|join(", ") }}
+    <form method="post">
+      <input type="hidden" name="aksi" value="gabung">
+      <input type="hidden" name="indeks" value="{{ loop.index0 }}">
+      <input name="nama" placeholder="Nama kamu">
+      <button type="submit">Gabung</button>
+    </form>
+  </div>
+{% endfor %}
+
+<h2>Buat Kelompok Baru</h2>
+<form method="post">
+  <input type="hidden" name="aksi" value="buat">
+  <label>Nama kelompok:<br><input name="nama"></label><br><br>
+  <label>Topik / mata kuliah:<br><input name="topik"></label><br><br>
+  <label>Nama pembuat:<br><input name="pembuat"></label><br><br>
+  <button type="submit">Buat kelompok</button>
+</form>
+{% endblock %}

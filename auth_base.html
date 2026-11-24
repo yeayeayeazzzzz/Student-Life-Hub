@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block judul %}UIB Student Life Hub{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: "Poppins", system-ui, sans-serif;
+      background: linear-gradient(160deg, #0b1120, #1b2a52);
+      color: #222;
+    }
+    .kartu {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      padding: 36px 32px 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+    .logo { width: 110px; height: auto; border-radius: 14px; margin-bottom: 18px; }
+    h1 { font-size: 1.5rem; margin: 0 0 4px; color: #2b2b2b; }
+    .sub { color: #8a8f98; font-size: 0.9rem; margin: 0 0 24px; }
+
+    .field { margin-bottom: 22px; text-align: left; }
+    .field input {
+      width: 100%;
+      border: 0;
+      border-bottom: 2px solid #c9ccd3;
+      padding: 10px 2px;
+      font: inherit;
+      font-size: 1rem;
+      color: #222;
+      background: transparent;
+      outline: none;
+    }
+    .field input:focus { border-image: linear-gradient(90deg, #22d3ee, #a21cfb) 1; }
+    .field .kecil { font-size: 0.8rem; color: #8a8f98; }
+
+    .opsi { text-align: left; font-size: 0.9rem; margin-bottom: 22px; color: #444; }
+    .opsi input { margin-right: 6px; }
+
+    .btn-gradasi {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px;
+      font: inherit;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #ffffff;
+      cursor: pointer;
+      background: linear-gradient(90deg, #22d3ee, #a21cfb);
+    }
+    .btn-gradasi:hover { opacity: 0.9; }
+
+    .bawah { margin-top: 22px; font-size: 0.9rem; color: #777; }
+    .bawah a { color: #2b2b2b; font-weight: 600; text-decoration: none; }
+    .alert { background: #fde8ea; color: #a4262c; border-radius: 10px; padding: 10px 14px;
+             font-size: 0.9rem; margin-bottom: 20px; text-align: left; }
+
+    .centang { width: 90px; height: 90px; border-radius: 50%; background: #d9f5e6; color: #1f9d63;
+               font-size: 3rem; display: flex; align-items: center; justify-content: center;
+               margin: 10px auto 16px; animation: muncul 0.5s ease; }
+    @keyframes muncul { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .tombol { display: inline-block; padding: 10px 22px; border-radius: 999px; color: #ffffff;
+              font-weight: 600; text-decoration: none; background: linear-gradient(90deg, #22d3ee, #a21cfb); }
+  </style>
+</head>
+<body>
+  <div class="kartu">
+    <img class="logo" src="{{ url_for('static', filename='logo-uib.png') }}" alt="Logo UIB">
+    <h1>UIB Student Life Hub</h1>
+
+    {% if pesan %}
+      <div class="alert">{{ pesan }}</div>
+    {% endif %}
+
+    {% block isi %}{% endblock %}
+  </div>
+</body>
+</html>

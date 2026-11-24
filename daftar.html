@@ -1,0 +1,23 @@
+{% extends "auth_base.html" %}
+
+{% block judul %}Daftar - UIB Student Life Hub{% endblock %}
+
+{% block isi %}
+<p class="sub">Buat akun baru</p>
+
+<form method="post">
+  <div class="field">
+    <input name="username" placeholder="Username" aria-label="Username" required autofocus>
+  </div>
+  <div class="field">
+    <input type="password" name="password" placeholder="Password (minimal 6 karakter)" aria-label="Password" required>
+  </div>
+  <div class="field">
+    <span class="kecil">Tanggal lahir</span>
+    <input type="date" name="lahir" aria-label="Tanggal lahir" required>
+  </div>
+  <button class="btn-gradasi" type="submit">DAFTAR</button>
+</form>
+
+<p class="bawah">Sudah punya akun? <a href="{{ url_for('masuk') }}">Masuk</a></p>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block isi %}
+<div class="card">
+  ⏱️ <b>Aturan reservasi:</b> maksimal {{ maks_jam }} jam per orang dalam sehari.
+</div>
+<h2>Daftar Ruang</h2>
+{% for r in rooms %}
+  <div class="card">
+    <b>{{ r.nama }}</b> (kapasitas {{ r.kapasitas }}) -
+    {% if r.tersedia %}✅ Tersedia{% else %}❌ Terpakai{% endif %}
+  </div>
+{% endfor %}
+
+<h2>Pesan Ruang</h2>
+<form method="post">
+  <label>Nama:<br><input name="nama"></label><br><br>
+
+  <label>Ruang:<br>
+    <select name="ruang">
+      {% for r in rooms if r.tersedia %}
+        <option>{{ r.nama }}</option>
+      {% endfor %}
+    </select>
+  </label><br><br>
+
+  <label>Tanggal:<br><input type="date" name="tanggal" required></label><br><br>
+<label>Jam mulai:<br><input type="time" name="mulai" required></label><br><br>
+<label>Durasi:<br>
+  <select name="durasi">
+    {% for j in range(1, maks_jam + 1) %}
+      <option value="{{ j }}">{{ j }} jam</option>
+    {% endfor %}
+  </select>
+</label><br><br>
+  <label>Tujuan:<br><input name="tujuan" placeholder="Kerja kelompok"></label><br><br>
+
+  <button type="submit">Pesan</button>
+</form>
+
+<h2>Daftar Reservasi</h2>
+<ul>
+  {% for b in bookings %}
+    <li>{{ b.kode }}: {{ b.nama }}, {{ b.ruang }}, {{ b.waktu }} ({{ b.tujuan }})</li>
+  {% else %}
+    <li>Belum ada reservasi.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

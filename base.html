@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UIB Student Life Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --biru: #1f5fa8;
+      --latar: #f1f3f7;
+      --kartu: #ffffff;
+      --teks: #2b2f38;
+      --redup: #6b7280;
+      --garis: #e3e6ec;
+      --lebar-sidebar: 260px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      background: var(--latar);
+      color: var(--teks);
+      line-height: 1.5;
+    }
+    a { color: var(--biru); }
+
+    /* ===== Header biru ===== */
+    .atas {
+      position: fixed; top: 0; left: 0; right: 0; height: 60px;
+      background: var(--biru); color: #ffffff;
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 16px; z-index: 20;
+    }
+    .atas img { height: 36px; width: 36px; border-radius: 8px; background: #ffffff; padding: 2px; }
+    .judul-app { font-size: 1.25rem; font-weight: 500; white-space: nowrap; }
+    .hamburger { font-size: 1.5rem; color: #ffffff; cursor: pointer; user-select: none; padding: 0 6px; }
+    .pengguna { margin-left: auto; font-size: 0.9rem; white-space: nowrap; }
+
+    /* ===== Sidebar ===== */
+    .toggle { display: none; }
+    .samping {
+      position: fixed; top: 60px; bottom: 0; left: 0;
+      width: var(--lebar-sidebar);
+      background: var(--latar);
+      border-right: 1px solid var(--garis);
+      overflow-y: auto;
+      padding: 8px 0;
+      transition: transform 0.25s;
+      z-index: 10;
+    }
+    .menu a, .menu summary {
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 24px;
+      color: #4b5260; text-decoration: none;
+      font-size: 1rem; cursor: pointer; list-style: none;
+    }
+    .menu summary::-webkit-details-marker { display: none; }
+    .menu summary::after {
+      content: "‹"; margin-left: auto; font-weight: bold; font-size: 1.4rem; line-height: 1;
+      color: #9aa1ad; transition: transform 0.2s;
+    }
+    .menu details[open] > summary::after { transform: rotate(-90deg); }
+    .menu a:hover, .menu summary:hover { background: #e7ebf2; }
+    .menu a.on { color: var(--biru); font-weight: 600; background: #e3ebf7;
+                 border-left: 4px solid var(--biru); padding-left: 20px; }
+    .menu .sub a { padding-left: 62px; font-size: 0.95rem; }
+    .menu .sub a.on { padding-left: 58px; }
+    .ikon { width: 22px; text-align: center; filter: grayscale(1); }
+    .menu a.on .ikon { filter: none; }
+
+    /* ===== Isi halaman ===== */
+    .isi {
+      margin-left: var(--lebar-sidebar);
+      padding: 84px 28px 40px;
+      transition: margin 0.25s;
+    }
+    .toggle:checked ~ .samping { transform: translateX(-100%); }
+    .toggle:checked ~ .isi { margin-left: 0; }
+    @media (max-width: 800px) {
+      .samping { transform: translateX(-100%); box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15); }
+      .toggle:checked ~ .samping { transform: none; }
+      .isi, .toggle:checked ~ .isi { margin-left: 0; padding: 84px 16px 40px; }
+      .pengguna { display: none; }
+    }
+
+    h2 { color: var(--biru); font-size: 1.25rem; margin: 28px 0 12px; }
+    h2:first-child { margin-top: 0; }
+
+    .card {
+      background: var(--kartu); border: 1px solid var(--garis); border-radius: 12px;
+      padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .pesan { background: #e3ebf7; color: #174a85; border: 1px solid #c3d5ee;
+             padding: 10px 14px; border-radius: 10px; font-weight: 600; margin-bottom: 16px; }
+    label { color: var(--redup); font-size: 0.9rem; }
+    input, select {
+      background: #ffffff; color: var(--teks); border: 1px solid #cdd3dd;
+      border-radius: 8px; padding: 8px 10px; font: inherit;
+    }
+    button {
+      background: var(--biru); color: #ffffff; border: 0; border-radius: 8px;
+      padding: 9px 16px; font: inherit; font-weight: 500; cursor: pointer; margin-top: 8px;
+    }
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ===== Elemen yang dipakai halaman-halaman ===== */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+    .dua-kolom { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 700px) { .dua-kolom { grid-template-columns: 1fr; } }
+    .grid .card, .dua-kolom .card { margin-bottom: 0; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 999px;
+             font-size: 0.8rem; font-weight: 600; margin-top: 6px; }
+    .ok { background: #dff5e8; color: #1e7a46; }
+    .no { background: #fde8ea; color: #a4262c; }
+    .tanggal { color: var(--biru); font-weight: 600; font-size: 1.05rem; }
+    .tengah { text-align: center; }
+    .form-sempit { max-width: 420px; margin: 0 auto; }
+    .tombol { display: inline-block; background: var(--biru); color: #ffffff; padding: 8px 18px;
+              border-radius: 8px; font-weight: 500; text-decoration: none; }
+    .avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--biru); color: #ffffff;
+              font-size: 2.2rem; font-weight: 600; display: flex; align-items: center;
+              justify-content: center; margin: 0 auto 12px; }
+
+    /* Loker */
+    .baris-loker { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+    .huruf { width: 24px; font-weight: 600; color: var(--biru); }
+    .baris-loker input { position: absolute; opacity: 0; pointer-events: none; }
+    .loker { display: inline-block; min-width: 52px; text-align: center; padding: 8px 0;
+             border-radius: 8px; background: #dff5e8; color: #1e7a46;
+             border: 2px solid transparent; cursor: pointer; font-weight: 600; }
+    .loker:hover { border-color: #1e7a46; }
+    input:checked + .loker { background: var(--biru); color: #ffffff; border-color: var(--biru); }
+    input:disabled + .loker { background: #fde8ea; color: #a4262c; cursor: not-allowed; }
+    .legenda span { display: inline-block; padding: 2px 10px; border-radius: 999px;
+                    font-size: 0.8rem; font-weight: 600; margin-right: 6px; }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="menu-toggle" class="toggle">
+
+  <header class="atas">
+    <img src="{{ url_for('static', filename='logo-uib.png') }}" alt="Logo UIB">
+    <span class="judul-app">Student Life Hub</span>
+    <label for="menu-toggle" class="hamburger" title="Buka/tutup menu">☰</label>
+    <span class="pengguna">👤 {{ session.get("user") }}</span>
+  </header>
+
+  <aside class="samping">
+    <nav class="menu">
+      <a href="{{ url_for('ringkasan') }}" class="{{ 'on' if aktif == 'ringkasan' }}">
+        <span class="ikon">📊</span> Ringkasan
+      </a>
+
+      <details {{ 'open' if aktif in ['reservasi', 'loker'] }}>
+        <summary><span class="ikon">🏢</span> Fasilitas</summary>
+        <div class="sub">
+          <a href="{{ url_for('reservasi') }}" class="{{ 'on' if aktif == 'reservasi' }}">Reservasi Ruang</a>
+          <a href="{{ url_for('loker') }}" class="{{ 'on' if aktif == 'loker' }}">Loker</a>
+        </div>
+      </details>
+
+      <a href="{{ url_for('kegiatan') }}" class="{{ 'on' if aktif == 'kegiatan' }}">
+        <span class="ikon">📅</span> Kalender Kegiatan
+      </a>
+      <a href="{{ url_for('kelompok') }}" class="{{ 'on' if aktif == 'kelompok' }}">
+        <span class="ikon">👥</span> Kelompok Belajar
+      </a>
+      <a href="{{ url_for('tumpangan') }}" class="{{ 'on' if aktif == 'tumpangan' }}">
+        <span class="ikon">🚗</span> Berbagi Tumpangan
+      </a>
+
+      <details {{ 'open' if aktif == 'profil' }}>
+        <summary><span class="ikon">👤</span> Akun</summary>
+        <div class="sub">
+          <a href="{{ url_for('profil') }}" class="{{ 'on' if aktif == 'profil' }}">Profil Saya</a>
+          <a href="{{ url_for('keluar') }}">Keluar</a>
+        </div>
+      </details>
+    </nav>
+  </aside>
+
+  <main class="isi">
+    {% if pesan %}
+      <p class="pesan">{{ pesan }}</p>
+    {% endif %}
+
+    {% block isi %}{% endblock %}
+  </main>
+</body>
+</html>
